@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Result.fs" />
+    <Compile Include="Utilities.fs" />
+    <Compile Include="SimpleTypes.fs" />
+    <Compile Include="Library.fs" />
+    <Compile Include="WeatherForecast.fs" />
+  </ItemGroup>
+
+</Project>
