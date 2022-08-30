@@ -6,7 +6,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Include="Workcell\Type.fs" />
+      <Compile Include="Workcell\SimpleTypes.fs" />
+      <Compile Include="Workcell\CompoundType.fs" />
       <Compile Include="Workcell\PublicTypes.fs" />
       <Compile Include="Workcell\InternalTypes.fs" />
       <Compile Include="Workcell\Implementation.fs" />

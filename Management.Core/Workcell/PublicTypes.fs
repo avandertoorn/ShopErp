@@ -1,17 +1,19 @@
 ﻿module Management.Core.Workcell.PublicTypes
 
 open System
-open Management.Core.WorkcellType
+open Management.Core.Workcell.CompoundTypes
+open Management.Core.Workcell.SimpleTypes
 
 type UnvalidatedWorkcell = {
-    ShopId : string
-    WorkcellCategory : string
+    Id: Guid
+    Name : string
+    WorkcellCategoryId : int
     Description : string
 }
 
 type WorkcellCreated = {
     Id: Guid
-    ShopId: ShopId
+    Name: Name
 }
 
 type CreateWorkcellEvent =

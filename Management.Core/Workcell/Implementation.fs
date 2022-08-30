@@ -3,33 +3,24 @@
 open System
 open Management.Core.Workcell.InternalTypes
 open Management.Core.Workcell.PublicTypes
-open Management.Core.WorkcellType
-
-let toShopId (checkShopIdIsUnique:CheckForUniqueShopId ) shopId =
-    let checkShopId shopId =
-        if checkShopIdIsUnique shopId then
-            Ok shopId
+open Management.Core.Workcell.CompoundTypes
+open Management.Core.Workcell.SimpleTypes
+let toName (checkWorkcellNameIsUnique:CheckForUniqueName ) name =
+    let checkName name =
+        if checkWorkcellNameIsUnique name then
+            Ok name
         else
-            let msg = $"Id %A{shopId} already used"
+            let msg = $"Id %A{name} already used"
             Error (ValidationError msg)
             
-    shopId
-    |> ShopId.create "Shop Id"
+    name
+    |> Name.create "Workcell Name"
     |> Result.mapError ValidationError
-    |> Result.bind checkShopId
+    |> Result.bind checkName
     
-let toWorkcellCategory (checkWorkcellCategoryExists:CheckWorkcellCategoryExists) workCellCategory =
-    let checkWorkcellCategory workCellCategory =
-        if checkWorkcellCategoryExists workCellCategory then
-            Ok workCellCategory
-        else
-            let msg = $"Workcell category &A{workCellCategory} is invalid"
-            Error (ValidationError msg)
-    
-    workCellCategory
-    |> WorkcellCategory.create "Workcell Category"
-    |> Result.mapError ValidationError
-    |> Result.bind checkWorkcellCategory
+let toWorkcellCategory (getWorkcellCategory:GetWorkcellCategory) workcellCategory =
+    workcellCategory
+    |> getWorkcellCategory
     
 let toWorkcellDescription description =
     description
@@ -37,23 +28,23 @@ let toWorkcellDescription description =
     |> Result.mapError ValidationError
     
 let validateWorkcell : ValidateWorkcell =
-    fun checkUniqueShopId checkWorkcellCategoryExists unvalidatedWorkcell ->
+    fun checkUniqueShopId getWorkcellCategory unvalidatedWorkcell ->
         asyncResult {
-            let! shopId =
-                unvalidatedWorkcell.ShopId
-                |> toShopId checkUniqueShopId
+            let! name =
+                unvalidatedWorkcell.Name
+                |> toName checkUniqueShopId
                 |> AsyncResult.ofResult
             let! workcellCategory =
-                unvalidatedWorkcell.WorkcellCategory
-                |> toWorkcellCategory checkWorkcellCategoryExists
+                unvalidatedWorkcell.WorkcellCategoryId
+                |> toWorkcellCategory getWorkcellCategory
                 |> AsyncResult.ofResult
             let! workcellDescription =
                 unvalidatedWorkcell.Description
                 |> toWorkcellDescription
                 |> AsyncResult.ofResult
             let validatedWorkcell : Workcell = {
-                Id = Guid.NewGuid()
-                ShopId = shopId
+                Id = unvalidatedWorkcell.Id
+                Name = name
                 WorkcellCategory = workcellCategory
                 Description = workcellDescription
                 }
@@ -63,7 +54,7 @@ let validateWorkcell : ValidateWorkcell =
 let createWorkcellCreatedEvent (createdWorkcell:Workcell) : WorkcellCreated =
     {
         Id = createdWorkcell.Id
-        ShopId = createdWorkcell.ShopId
+        Name = createdWorkcell.Name
     }
         
 let createEvents : CreateEvents =

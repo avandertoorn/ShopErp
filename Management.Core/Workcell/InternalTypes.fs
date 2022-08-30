@@ -1,17 +1,18 @@
 ﻿module Management.Core.Workcell.InternalTypes
 
 open Management.Core.Workcell.PublicTypes
-open Management.Core.WorkcellType
+open Management.Core.Workcell.CompoundTypes
+open Management.Core.Workcell.SimpleTypes
 
-type CheckWorkcellCategoryExists =
-    WorkcellCategory -> bool
+type GetWorkcellCategory =
+    int -> Result<WorkcellCategory, ValidationError>
     
-type CheckForUniqueShopId =
-    ShopId -> bool
+type CheckForUniqueName =
+    Name -> bool
 
 type ValidateWorkcell =
-   CheckForUniqueShopId 
-     -> CheckWorkcellCategoryExists
+   CheckForUniqueName 
+     -> GetWorkcellCategory
      -> UnvalidatedWorkcell
      -> AsyncResult<Workcell, ValidationError>
      

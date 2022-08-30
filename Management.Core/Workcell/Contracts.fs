@@ -2,42 +2,50 @@
 
 open System
 open Management.Core.Workcell.PublicTypes
-open Management.Core.WorkcellType
+open Management.Core.Workcell.CompoundTypes
+open Management.Core.Workcell.SimpleTypes
 open SimpleTypes
     
-module CreateWorkcell =
+module WorkcellContracts =
     
-    type Request =
-        { ShopId: string
-          WorkcellCategory: string
+    type CreateRequest =
+        { Name: string
+          WorkcellCategoryId: int
           Description: string }
         
-    type Response =
+    type CreateResponse =
         { Id: Guid
-          ShopId: string
+          Name: string
+          WorkcellCategoryId: int
+          Description: string }
+        
+    type UpdateRequest =
+        { Id: Guid
+          Name: string
+          WorkcellCategory: string
+          Description: string }
+    type UpdateResponse =
+        { Id: Guid
+          Name: string
           WorkcellCategory: string
           Description: string }
         
-    let toNewUnvalidatedWorkcell (dto:Request) :UnvalidatedWorkcell =
-        {
-         ShopId = dto.ShopId
-         WorkcellCategory = dto.WorkcellCategory
-         Description = dto.Description
-         }
+    let toWorkcell (dto:CreateRequest) :UnvalidatedWorkcell =
+        { Id = Guid.NewGuid()
+          Name = dto.Name
+          WorkcellCategoryId = dto.WorkcellCategoryId
+          Description = dto.Description }
             
-    let fromDomain (domainObj: Workcell) :Response =
-        {
-            Id = domainObj.Id
-            ShopId = domainObj.ShopId |> ShopId.value
-            WorkcellCategory = domainObj.WorkcellCategory |> WorkcellCategory.value
-            Description = domainObj.Description |> Option.map WorkcellDescription.value |> Utilities.Utils.defaultIfNone null
-        }
+    let fromDomain (domainObj: Workcell) :CreateResponse =
+        { Id = domainObj.Id
+          Name = domainObj.Name |> Name.value
+          WorkcellCategoryId = domainObj.WorkcellCategory.Id
+          Description = domainObj.Description |> Option.map WorkcellDescription.value |> Utilities.Utils.defaultIfNone null }
         
-type CreateWorkcellErrorDto = {
-    Code: string
-    Message: string
-}
-        
+type CreateWorkcellErrorDto =
+    { Code: string
+      Message: string }
+
 module CreateWorkcellErrorDto =
     let fromDomain (domainObj:CreateWorkcellError) :CreateWorkcellErrorDto =
         match domainObj with
@@ -47,4 +55,3 @@ module CreateWorkcellErrorDto =
                 Code = "ValidationError"
                 Message = msg
             }
-        

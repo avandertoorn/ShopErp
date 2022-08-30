@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "2tXL23nWl3hCgzFGvLmJ9eJn/Oo2sTg4v0kWMdnvyg7+PixMfsmyVJlatsMRA3CXoX7E4jqxXgU7uCVd03rCVw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Andrew\\RiderProjects\\ShopErp\\Management.Infrastructure\\Management.Infrastructure.fsproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Andrew\\.nuget\\packages\\fsharp.core\\6.0.5\\fsharp.core.6.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}

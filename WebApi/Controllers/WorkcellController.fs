@@ -2,44 +2,55 @@ namespace WebApi.Controllers
 
 open System
 open Management.Contracts
-open Management.Contracts.CreateWorkcell
+open Management.Contracts.WorkcellContracts
 open Management.Core.Workcell
+open Management.Core.Workcell.CompoundTypes
 open Management.Core.Workcell.InternalTypes
 open Management.Core.Workcell.PublicTypes
+open Management.Core.Workcell.SimpleTypes
 open Microsoft.AspNetCore.Mvc
-open Microsoft.AspNetCore.Server.HttpSys
 open Microsoft.FSharp.Core
 
-type CreateWorkcellApi = Request -> AsyncResult<Response, CreateWorkcellError>
+type CreateWorkcellApi = CreateRequest -> AsyncResult<CreateResponse, CreateWorkcellError>
 
 module Something =
-    let checkForUniqueShopId : CheckForUniqueShopId =
+    let dummyCheckForUniqueName : CheckForUniqueName =
         fun shopId ->
             printf "Checked if Unique Shop Id"
             true
             
-    let checkWorkcellCategoryExists : CheckWorkcellCategoryExists =
+    //In reality it would return from database
+    let dummyCheckWorkcellCategoryExists : GetWorkcellCategory =
         fun workcellCategory ->
-            printf "Checked if Workcell Category Exists"
-            true
+            result {
+                let! name =
+                    "Dummy Name"
+                    |> CategoryName.create "categoryName"
+                    |> Result.mapError ValidationError
+                let category: WorkcellCategory = {
+                    Id = workcellCategory
+                    CategoryName = name
+                }
+            return category
+        }
 
 [<ApiController>]
-[<Route("[controller]")>]
+[<Route("api/[controller]")>]
 type WorkcellController () =
     inherit ControllerBase()
     
     [<HttpPost>]
-    member _.Post([<FromBody>] request : Request) : ActionResult =
-        let unvalidatedWorkcell = request |> CreateWorkcell.toNewUnvalidatedWorkcell
+    member _.Post([<FromBody>] request : CreateRequest) : ActionResult =
+        let unvalidatedWorkcell = request |> toWorkcell
         let workflow =
              Implementation.createWorkcell
-               Something.checkForUniqueShopId
-               Something.checkWorkcellCategoryExists
+               Something.dummyCheckForUniqueName
+               Something.dummyCheckWorkcellCategoryExists
          
         let result = workflow unvalidatedWorkcell |> Async.StartAsTask
         match result.Result with
             | Ok workcell ->
-                let workcellDto = workcell |> CreateWorkcell.fromDomain
+                let workcellDto = workcell |> fromDomain
                 base.Ok workcellDto
             | Error error ->
                 let dto = error |> CreateWorkcellErrorDto.fromDomain
@@ -47,4 +58,5 @@ type WorkcellController () =
     
     [<HttpGet>]
     member _.Get() =
-        { Id = Guid.NewGuid(); ShopId = "dsk"; WorkcellCategory = "Cat"; Description = "Dis" }
+        let a: CreateResponse = { Id = Guid.NewGuid(); Name = "dsk"; WorkcellCategoryId = 5; Description = "Dis" }
+        a
