@@ -41,7 +41,7 @@ type WorkcellController () =
     
     [<HttpPost>]
     member _.Post([<FromBody>] request : CreateRequest) : ActionResult =
-        let unvalidatedWorkcell = request |> toWorkcell
+        let unvalidatedWorkcell = request |> toUnvalidatedWorkcell
         let workflow =
              Implementation.createWorkcell
                Something.dummyCheckForUniqueName

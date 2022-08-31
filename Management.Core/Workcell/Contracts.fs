@@ -7,12 +7,7 @@ open Management.Core.Workcell.SimpleTypes
 open SimpleTypes
     
 module WorkcellContracts =
-    
-    type CreateRequest =
-        { Name: string
-          WorkcellCategoryId: int
-          Description: string }
-        
+            
     type WorkcellResponse =
         { Id: Guid
           Name: string
@@ -21,6 +16,11 @@ module WorkcellContracts =
         
     type GetAllWorkcellResponse =
         { Workcells: WorkcellResponse list }
+        
+    type CreateRequest =
+        { Name: string
+          WorkcellCategoryId: int
+          Description: string }
         
     type UpdateRequest =
         { Id: Guid
@@ -31,7 +31,7 @@ module WorkcellContracts =
     type DeleteRequest =
         { Id: Guid }
         
-    let toWorkcell (dto:CreateRequest) :UnvalidatedWorkcell =
+    let toUnvalidatedWorkcell (dto:CreateRequest) :UnvalidatedWorkcell =
         { Id = Guid.NewGuid()
           Name = dto.Name
           WorkcellCategoryId = dto.WorkcellCategoryId
