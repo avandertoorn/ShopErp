@@ -1,0 +1,10 @@
+﻿/Client/bin/
+/Client/obj/
+/Management.Core/bin/
+/Management.Core/obj/
+/Management.Infrastructure/bin/
+/Management.Infrastructure/obj/
+/Shared/bin/
+/Shared/obj/
+/WebApi/bin/
+/WebApi/obj/

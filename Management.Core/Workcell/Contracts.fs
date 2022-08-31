@@ -13,22 +13,23 @@ module WorkcellContracts =
           WorkcellCategoryId: int
           Description: string }
         
-    type CreateResponse =
+    type WorkcellResponse =
         { Id: Guid
           Name: string
           WorkcellCategoryId: int
           Description: string }
+        
+    type GetAllWorkcellResponse =
+        { Workcells: WorkcellResponse list }
         
     type UpdateRequest =
         { Id: Guid
           Name: string
           WorkcellCategory: string
           Description: string }
-    type UpdateResponse =
-        { Id: Guid
-          Name: string
-          WorkcellCategory: string
-          Description: string }
+    
+    type DeleteRequest =
+        { Id: Guid }
         
     let toWorkcell (dto:CreateRequest) :UnvalidatedWorkcell =
         { Id = Guid.NewGuid()
@@ -36,7 +37,7 @@ module WorkcellContracts =
           WorkcellCategoryId = dto.WorkcellCategoryId
           Description = dto.Description }
             
-    let fromDomain (domainObj: Workcell) :CreateResponse =
+    let fromDomain (domainObj: Workcell) :WorkcellResponse =
         { Id = domainObj.Id
           Name = domainObj.Name |> Name.value
           WorkcellCategoryId = domainObj.WorkcellCategory.Id

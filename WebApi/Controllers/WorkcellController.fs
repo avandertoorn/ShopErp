@@ -11,7 +11,7 @@ open Management.Core.Workcell.SimpleTypes
 open Microsoft.AspNetCore.Mvc
 open Microsoft.FSharp.Core
 
-type CreateWorkcellApi = CreateRequest -> AsyncResult<CreateResponse, CreateWorkcellError>
+type CreateWorkcellApi = CreateRequest -> AsyncResult<WorkcellResponse, CreateWorkcellError>
 
 module Something =
     let dummyCheckForUniqueName : CheckForUniqueName =
@@ -58,5 +58,5 @@ type WorkcellController () =
     
     [<HttpGet>]
     member _.Get() =
-        let a: CreateResponse = { Id = Guid.NewGuid(); Name = "dsk"; WorkcellCategoryId = 5; Description = "Dis" }
+        let a: WorkcellResponse = { Id = Guid.NewGuid(); Name = "dsk"; WorkcellCategoryId = 5; Description = "Dis" }
         a

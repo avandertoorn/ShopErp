@@ -4,22 +4,22 @@
 @inject HttpClient Http
 <h3>Workcell</h3>
 
-@if (_workcell == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <h1>@_workcell.Name</h1>
-    <h1>@_workcell.WorkcellCategoryId</h1>
-    <h1>@_workcell.Description</h1>
+@* @if (_workcell == null) *@
+@* { *@
+@*     <p><em>Loading...</em></p> *@
+@* } *@
+@* else *@
+@* { *@
+@*     <h1>@_workcell.Name</h1> *@
+@*     <h1>@_workcell.WorkcellCategoryId</h1> *@
+@*     <h1>@_workcell.Description</h1> *@
 }
 
 @code {
-    private WorkcellContracts.CreateResponse? _workcell;
-
-    protected override async Task OnInitializedAsync()
-    {
-        _workcell = await Http.GetFromJsonAsync<WorkcellContracts.CreateResponse>("api/workcell");
+    // private WorkcellContracts.CreateResponse? _workcell;
+    //
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     _workcell = await Http.GetFromJsonAsync<WorkcellContracts.CreateResponse>("api/workcell");
     }
 }
