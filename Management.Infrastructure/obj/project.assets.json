@@ -63,7 +63,7 @@
   },
   "libraries": {
     "FSharp.Core/6.0.5": {
-      "sha512": "Bpqxoh/UUTq7fHd0a1Ndv/ml1BEtwqmpruKzIMaNnNXgdBSZOEA7wQtoXyc+eKwxq4TQrbHpAbM6yaZAzqotvw==",
+      "sha512": "FwdQVtpj34xt8vKyFUUeNIS+obWlEnSrSW7y1ivRVts/ZsrUsKyOd0bZehgFhWdnB/NBsa9DCWvNFMTO0XDFcg==",
       "type": "package",
       "path": "fsharp.core/6.0.5",
       "files": [
@@ -113,27 +113,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Andrew\\.nuget\\packages\\": {}
+    "/home/andrewvandertoorn/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Andrew\\RiderProjects\\ShopErp\\Management.Infrastructure\\Management.Infrastructure.fsproj",
+      "projectUniqueName": "/home/andrewvandertoorn/RiderProjects/ShopErp/Management.Infrastructure/Management.Infrastructure.fsproj",
       "projectName": "Management.Infrastructure",
-      "projectPath": "C:\\Users\\Andrew\\RiderProjects\\ShopErp\\Management.Infrastructure\\Management.Infrastructure.fsproj",
-      "packagesPath": "C:\\Users\\Andrew\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Andrew\\RiderProjects\\ShopErp\\Management.Infrastructure\\obj\\",
+      "projectPath": "/home/andrewvandertoorn/RiderProjects/ShopErp/Management.Infrastructure/Management.Infrastructure.fsproj",
+      "packagesPath": "/home/andrewvandertoorn/.nuget/packages/",
+      "outputPath": "/home/andrewvandertoorn/RiderProjects/ShopErp/Management.Infrastructure/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Andrew\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/home/andrewvandertoorn/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\sdk\\6.0.400\\FSharp\\library-packs": {},
+        "/usr/share/dotnet/sdk/6.0.302/FSharp/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -160,17 +158,26 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.7, 6.0.7]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.7, 6.0.7]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.302/RuntimeIdentifierGraph.json"
       }
     }
   }
