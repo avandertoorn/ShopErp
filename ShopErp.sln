@@ -13,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Management", "Management", 
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Management.Core", "Management.Core\Management.Core.fsproj", "{3473FF8A-5FC8-4A4C-B1D0-4E3905A3B61F}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Management.Infrastructure", "Management.Infrastructure\Management.Infrastructure.fsproj", "{45370C77-FEEA-4364-97A7-7FBA57F02FAB}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,13 +38,8 @@ Global
 		{3473FF8A-5FC8-4A4C-B1D0-4E3905A3B61F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3473FF8A-5FC8-4A4C-B1D0-4E3905A3B61F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3473FF8A-5FC8-4A4C-B1D0-4E3905A3B61F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{45370C77-FEEA-4364-97A7-7FBA57F02FAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{45370C77-FEEA-4364-97A7-7FBA57F02FAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{45370C77-FEEA-4364-97A7-7FBA57F02FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{45370C77-FEEA-4364-97A7-7FBA57F02FAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3473FF8A-5FC8-4A4C-B1D0-4E3905A3B61F} = {B91C1087-05B3-471E-ACA9-F16BD15FBADE}
-		{45370C77-FEEA-4364-97A7-7FBA57F02FAB} = {B91C1087-05B3-471E-ACA9-F16BD15FBADE}
 	EndGlobalSection
 EndGlobal
